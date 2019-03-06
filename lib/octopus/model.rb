@@ -9,21 +9,6 @@ module Octopus
     end
 
     module SharedMethods
-      def using(shard)
-        if block_given?
-          raise Octopus::Exception, <<-EOF
-#{name}.using is not allowed to receive a block, it works just like a regular scope.
-
-If you are trying to scope everything to a specific shard, use Octopus.using instead.
-          EOF
-        end
-
-        if Octopus.enabled?
-          Octopus::ScopeProxy.new(shard, self)
-        else
-          self
-        end
-      end
     end
 
     module InstanceMethods
